@@ -1,0 +1,4 @@
+{
+	"name": "server",
+	"main": "dist/index.js"
+}
