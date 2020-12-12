@@ -14,6 +14,11 @@ export class CatClickController extends AbstractElementController<HTMLElement> {
 			this.activeScrollCats.add(cat);
 		});
 		this.client.on("tick", ev => {
+			if (this.activeScrollCats.size > 50) {
+				const rand = Random.sample([...this.activeScrollCats]);
+				this.activeScrollCats.delete(rand);
+				rand.remove();
+			}
 			for (const cat of this.activeScrollCats) {
 				if (!cat.style.top) cat.style.top = "0px";
 				if (!cat.style.transform) cat.style.transform = "rotate(0deg)";
