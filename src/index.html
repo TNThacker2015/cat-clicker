@@ -8,17 +8,31 @@
 	</head>
 	<body>
 		<header><h1>Cat Clicker</h1></header>
-		<section id="large-display">
-			<h2>Cat Count: <span id="large-display-number">0</span></h2>
-			<h3 id="full-display-number">0</h3>
-		</section>
-		<section id="main-content">
-			<section id="small-display">
-				<h3>CPS: <span id="small-display-cps">0</span></h3>
+		<aside id="page-cover">
+			<section id="text-container">
+				<h1>Loading...</h1>
+				<p>If you're seeing this for a long time, try enabling JavaScript or use a different browser.</p>
 			</section>
-			<div id="click-cat">
-				<img src="img/radcat.png" />
-			</div>
+		</aside>
+		<aside id="bg-overlay"></aside>
+		<section id="cat-scroller"></section>
+		<section id="content-grid">
+			<section id="main-content">
+				<section id="large-display">
+					<h2>Cat Count: <span id="large-display-number">0</span></h2>
+					<h3 id="full-display-number">0</h3>
+				</section>
+				<section id="small-display">
+					<h3>CPS: <span id="small-display-cps">0</span></h3>
+				</section>
+				<div id="click-cat">
+					<img src="img/radcat.png" />
+				</div>
+			</section>
+			<section id="catalog">
+				<h1>Catalog</h1>
+				<section id="catalog-items"></section>
+			</section>
 		</section>
 	</body>
 </html>

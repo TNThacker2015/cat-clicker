@@ -4,10 +4,27 @@ const autoprefixer = require("autoprefixer");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
+const infoPages = (/** @type {string[]} */ ...filenames) =>
+	filenames.map(
+		x =>
+			new HtmlWebpackPlugin({
+				filename: `${x}.html`,
+				//favicon: "favicon.ico",
+				template: `src/dir/${x}.html`,
+				chunks: ["info"],
+			})
+	);
 module.exports = {
 	mode: "production",
 	//devtool: "inline-source-map",
-	entry: ["./src/meow.ts", ...glob.sync(path.join(__dirname, "./src/controllers/**/*.ts"))],
+	entry: {
+		main: [
+			"./src/meow.ts",
+			...glob.sync(path.join(__dirname, "./src/controllers/**/*.ts")),
+			...glob.sync(path.join(__dirname, "./src/img/**/*.*")),
+		],
+		info: "./src/dir/info.ts",
+	},
 	module: {
 		rules: [
 			{
@@ -41,7 +58,9 @@ module.exports = {
 				use: [
 					{
 						loader: "file-loader",
-						options: {},
+						options: {
+							name: "[name].[ext]",
+						},
 					},
 				],
 			},
@@ -54,21 +73,28 @@ module.exports = {
 					},
 				],
 			},
+			{
+				test: /\.ya?ml$/,
+				use: "js-yaml-loader",
+			},
 		],
 	},
 	resolve: {
 		extensions: [".ts"],
 	},
 	output: {
-		filename: "bundle.js",
+		filename: "bundle_[name].js",
 		path: path.resolve(__dirname, "dist"),
+		publicPath: "/",
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			filename: "index.html",
 			//favicon: "favicon.ico",
 			template: "src/index.html",
+			chunks: ["main"],
 		}),
+		...infoPages("illegal", "404", "500"),
 		new MiniCssExtractPlugin({
 			filename: "[name].css",
 			chunkFilename: "[id].css",
@@ -77,4 +103,10 @@ module.exports = {
 		}),
 	],
 	target: "web",
+	experiments: {
+		topLevelAwait: true,
+	},
+	performance: {
+		hints: false,
+	},
 };

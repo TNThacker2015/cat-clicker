@@ -1,0 +1,14 @@
+catalog:
+    - name: Pepper
+      value: 1
+      unit: 1
+      type: CPS
+      cost: 100
+      costUnit: 0
+      
+    - name: High Hazard Fireworks
+      value: 1
+      unit: 0
+      type: VALUE
+      cost: 150
+      costUnit: 0

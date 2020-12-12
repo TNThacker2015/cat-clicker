@@ -1,8 +1,54 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap");
 body {
 	font-family: Roboto;
 	background-color: #eee;
 	user-select: none;
+	aside#page-cover {
+		width: 100%;
+		height: 100%;
+		background-color: #eec;
+		background-image: url("./img/loading.png");
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-size: cover;
+		background-position-y: bottom;
+		section#text-container {
+			position: absolute;
+			margin-left: auto;
+			margin-right: auto;
+			top: 13%;
+			left: 0;
+			right: 0;
+			backdrop-filter: blur(4px);
+			background-color: #fff5;
+			text-align: center;
+			h1 {
+				font-size: 4.5em;
+				font-family: "Merriweather";
+				font-weight: 800;
+				margin: 2.3rem;
+			}
+			p {
+				width: 60%;
+				margin-left: auto;
+				margin-right: auto;
+				font-family: "Open Sans";
+			}
+		}
+	}
+	aside#bg-overlay {
+		position: fixed;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-position: center;
+		filter: brightness(1.5) blur(4px) contrast(0.8);
+	}
 	header {
 		text-align: center;
 		h1 {
@@ -13,7 +59,7 @@ body {
 	}
 	section#large-display {
 		h2 {
-			color: #333;
+			color: #111;
 			font-size: 1.75em;
 			margin: 10px 20px;
 			span#large-display-number {
@@ -25,24 +71,51 @@ body {
 			}
 		}
 	}
-	section#main-content {
-		width: 33%;
-		div#click-cat {
-			img {
-				width: 100%;
-				border: #222 6.9px solid;
-				box-sizing: border-box;
-				border-radius: 15px;
-				cursor: pointer;
-				transition: filter 0.05s;
-				&:hover {
-					filter: brightness(90%);
+	section#content-grid {
+		display: grid;
+		grid-template-columns: repeat(3, (100% / 3));
+		grid-gap: 1em;
+		section#main-content {
+			div#click-cat {
+				img {
+					width: 100%;
+					border: #222 6.9px solid;
+					box-sizing: border-box;
+					border-radius: 15px;
+					cursor: pointer;
+					transition: filter 0.05s;
+					&:hover {
+						filter: brightness(90%);
+					}
+					&:active {
+						filter: brightness(70%);
+					}
+					-webkit-user-drag: none;
 				}
-				&:active {
-					filter: brightness(70%);
-				}
-				-webkit-user-drag: none;
 			}
+		}
+		section#catalog {
+			text-align: center;
+			background: #fff5;
+			border-radius: 15px;
+			h1 {
+				margin: 5px;
+				font-size: 1.6rem;
+			}
+		}
+	}
+	section#cat-scroller {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		img.scrolling-cat {
+			width: 2em;
+			position: fixed;
+			top: 0;
+			left: 0;
 		}
 	}
 }
