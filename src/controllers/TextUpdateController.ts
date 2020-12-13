@@ -9,10 +9,11 @@ export class TextUpdateController extends AbstractElementController<HTMLSpanElem
 	public register() {
 		const smallDisplay = document.getElementById("full-display-number");
 		if (smallDisplay === null) return false;
-		this.client.on("tick", ev => {
+		this.client.on("tick", async ev => {
 			const cats = LSWrapper.getCats();
 			this.element.innerText = toWords(cats);
-			smallDisplay.innerText = String(cats);
+			const strCat = String(cats);
+			smallDisplay.innerText = strCat.length > 50 ? `${strCat.slice(0, 10)}...${String(cats).slice(-39)}` : strCat;
 		});
 		return true;
 	}

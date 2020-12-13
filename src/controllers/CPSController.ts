@@ -7,7 +7,7 @@ export class CPSController extends AbstractElementController<HTMLSpanElement> {
 	protected clicks = 0;
 	public register() {
 		window.addEventListener("click", ev => this.clicks++);
-		this.client.on("secTick", ev => {
+		this.client.on("secTick", async ev => {
 			this.element.innerText = String(this.clicks);
 			this.clicks = 0;
 		});

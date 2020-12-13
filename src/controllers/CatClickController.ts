@@ -10,8 +10,10 @@ export class CatClickController extends AbstractElementController<HTMLSpanElemen
 	public register() {
 		const catScroller = document.getElementById("cat-scroller");
 		if (!catScroller) return false;
-		this.element.addEventListener("click", ev => {
-			LSWrapper.incrCats(1n);
+		this.element.addEventListener("click", async ev => {
+			const event = new CatClickEvent(1n);
+			this.client.emit("catClick", event);
+			LSWrapper.incrCats(await event.getIncr());
 			const scrollCat = document.createElement("img");
 			scrollCat.classList.add("scrolling-cat");
 			scrollCat.src = CatImages.getRandomCatURL();
@@ -27,5 +29,17 @@ export class CatClickController extends AbstractElementController<HTMLSpanElemen
 			this.client.emit("scrollCatSpawn", { element: scrollCat });
 		});
 		return true;
+	}
+}
+
+export class CatClickEvent extends CustomEvent<{}> {
+	constructor(protected toIncr: bigint | Promise<bigint>, protected eventName = "catClick") {
+		super(eventName);
+	};
+	public setIncr(toIncr: bigint | Promise<bigint>) {
+		this.toIncr = toIncr;
+	}
+	public getIncr() {
+		return this.toIncr;
 	}
 }

@@ -109,11 +109,12 @@ const bigbois = [
 	"octingent",
 	"nongent"
 ];
-const nm = (num: bigint, m: bigint) => `.${num.toString().replace((num / m).toString(), "").slice(0, 3)}`
+const nm = (num: bigint, m: bigint) => `.${num.toString().replace((num / m).toString(), "").slice(0, 3)}`.replace(/\.?0+$/, "");
 export const toWords = (num: bigint): string => {
+	if (num < 0n) return `-${toWords(-num)}`;
 	// if (num <= 20) return under20[Number(num)];
-	if (num < 1000) return num.toString();
-	if (num < 1000000) return `${(Number(num) / 1000).toFixed(3)} thousand`;
+	if (num < 10000) return num.toString();
+	if (num < 1000000) return `${(Number(num) / 1000).toFixed(3).replace(/\.?0+$/, "")} thousand`;
 	for (const [index, high] of higher.entries()) {
 		const m = 10n ** ((BigInt(index) + 2n) * 3n);
 		if (num < m * 1000n) return `${num / m}${nm(num, m)} ${high}illion`;

@@ -22,8 +22,7 @@ export class Database {
 		const obj = trx.objectStore("catalog");
 		return this.getCatalogItem(id) ? obj.put({ amount, id }) : obj.add({ amount }, id);
 	}
-	public static async getOrCreateCatalogItem(id: string) {
-		return await this.getCatalogItem(id) ?? (await this.setCatalogItem(id, 0), await this.getCatalogItem(id));
+	public static async getOrCreateCatalogItem(id: string): Promise<CatalogDatabaseEntry> {
+		return await this.getCatalogItem(id) ?? (await this.setCatalogItem(id, 0), await this.getCatalogItem(id))!;
 	}
 }
-console.log(Database);

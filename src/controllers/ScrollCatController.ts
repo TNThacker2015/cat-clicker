@@ -13,8 +13,8 @@ export class CatClickController extends AbstractElementController<HTMLElement> {
 			const { element: cat } = ev.detail;
 			this.activeScrollCats.add(cat);
 		});
-		this.client.on("tick", ev => {
-			if (this.activeScrollCats.size > 50) {
+		this.client.on("tick", async ev => {
+			if (this.activeScrollCats.size > 40) {
 				const rand = Random.sample([...this.activeScrollCats]);
 				this.activeScrollCats.delete(rand);
 				rand.remove();

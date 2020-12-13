@@ -23,6 +23,9 @@ export class LSManager {
 		if (val === null) return null;
 		return isNaN(+val) ? (this.set(key, "0"), 0) : +val;
 	}
+	public static setNumber(key: string, num: number) {
+		this.set(key, String(num));
+	}
 	public static getJSON(key: string) {
 		const val = this.get(key);
 		if (val === null) return null;
@@ -60,5 +63,17 @@ export class LSWrapper {
 	}
 	public static incrCats(num: bigint) {
 		return this.setCats(this.getCats() + num);
+	}
+	public static getMaxOfflineTime() {
+		return LSManager.getNumber("maxOfflineTime") ?? 0;
+	}
+	public static setMaxOfflineTime(num: number) {
+		return LSManager.setNumber("maxOfflineTime", num);
+	}
+	public static getLastOnline() {
+		return LSManager.getNumber("lastOnline") ?? 0;
+	}
+	public static setLastOnline(num: number) {
+		return LSManager.setNumber("lastOnline", num);
 	}
 }

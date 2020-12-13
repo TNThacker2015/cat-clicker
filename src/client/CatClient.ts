@@ -1,10 +1,14 @@
 import { EventEmitter } from "../util/EventEmitter";
 import type { AbstractController, ExtendedController } from "../controllers/AbstractController";
 import { Database } from "../util/Database";
+import type { CatClickEvent } from "../controllers/CatClickController";
+import { CatalogTickEvent } from "../controllers/CatalogTickController";
 
-export type CatClientEvents = "tick" | "secTick" | "scrollCatSpawn";
+export type CatClientEvents = "tick" | "secTick" | "scrollCatSpawn" | "catClick" | "catalogTick";
 export interface CatClientEventMap {
 	scrollCatSpawn: CustomEvent<{ element: HTMLImageElement }>;
+	catClick: CatClickEvent;
+	catalogTick: CatalogTickEvent;
 }
 export class CatClient extends EventEmitter<CatClientEvents, CatClientEventMap> {
 	protected registeredControllers: AbstractController[] = [];
@@ -18,6 +22,10 @@ export class CatClient extends EventEmitter<CatClientEvents, CatClientEventMap> 
 		setInterval(() => {
 			this.emit("secTick");
 		}, 1000);
+
+		setTimeout(() => {
+			this.hideLoading();
+		}, 760);
 	}
 	public async registerControllers(...controllers: ExtendedController[]) {
 		for (const Controller of controllers) {
@@ -26,8 +34,6 @@ export class CatClient extends EventEmitter<CatClientEvents, CatClientEventMap> 
 			if (await controller.register()) this.registeredControllers.push(controller);
 			else throw new Error(`Controller ${Controller.name} failed to load!`);
 		};
-		this.hideLoading();
-		Database.setCatalogItem("e", 10);
 	}
 
 	public hideLoading() {

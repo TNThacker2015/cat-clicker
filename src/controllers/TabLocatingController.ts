@@ -5,7 +5,7 @@ import { RegisterController } from "./RegisterController";7
 export class CPSController extends AbstractController {
 	protected channel = new BroadcastChannel("main");
 	public register() {
-		this.client.on("secTick", ev => {
+		this.client.on("secTick", async ev => {
 			this.channel.postMessage("Tab open!");
 		});
 		this.channel.addEventListener("message", ev => window.location.href = "/illegal.html")

@@ -1,14 +1,112 @@
 catalog:
     - name: Pepper
       value: 1
-      unit: 1
+      unit: 0
       type: CPS
       cost: 100
       costUnit: 0
-      
+
     - name: High Hazard Fireworks
       value: 1
       unit: 0
-      type: VALUE
+      type: CLICKS
       cost: 150
       costUnit: 0
+
+    - name: Zirconium Cube
+      value: 2
+      unit: 0
+      type: CPS
+      cost: 250
+      costUnit: 0
+
+    - name: Illegal Gamer House
+      value: 7
+      unit: 0
+      type: CPS
+      cost: 750
+      costUnit: 0
+
+    - name: Lag Spikes
+      value: 5
+      unit: 0
+      type: CLICKS
+      cost: 1250
+      costUnit: 0
+
+    - name: Factions
+      value: 20
+      unit: 0
+      type: CPS
+      cost: 1750
+      costUnit: 0
+
+    - name: Negative Consequences
+      value: 15
+      unit: 0
+      type: CLICKS
+      cost: 3750
+      costUnit: 0
+
+    - name: Semicolon Three
+      value: 50
+      unit: 0
+      type: CPS
+      cost: 9
+      costUnit: 1
+
+    - name: T4 Major Griefing in Wilderness
+      value: 150
+      unit: 0
+      type: CPS
+      cost: 15
+      costUnit: 1
+
+    - name: Cat Rock
+      value: 50
+      unit: 0
+      type: CLICKS
+      cost: 35
+      costUnit: 1
+
+    - name: RCE Bottle
+      value: 500
+      unit: 0
+      type: CLICKS
+      cost: 75
+      costUnit: 1
+
+    - name: Orb
+      value: 2
+      unit: 1
+      type: CPS
+      cost: 80
+      costUnit: 1
+
+    - name: Loaf Bakery
+      value: 10
+      unit: 1
+      type: CLICKS
+      cost: 500
+      costUnit: 1
+
+    - name: Yellow Wool
+      value: 350
+      unit: 1
+      type: CPS
+      cost: 2
+      costUnit: 2
+
+    - name: Green Paint
+      value: 1
+      unit: 2
+      type: CLICKS
+      cost: 60
+      costUnit: 2
+
+    - name: Cat Moblie
+      value: 2500
+      unit: 1
+      type: CPS
+      cost: 80
+      costUnit: 2
